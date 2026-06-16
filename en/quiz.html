@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9NPTWK3L4G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9NPTWK3L4G');
+</script>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1691516136077983"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personality Quiz - Star Sailors Guide &amp; Wiki</title>
+  <meta name="description" content="Take the Star Sailors personality quiz to discover which character, battle style, and class path matches your soul. Answer 8 questions to find your perfect companion in Com2uS' RPG.">
+  <meta name="keywords" content="Star Sailors quiz, Star Sailors personality test, Star Sailors character match, which Star Sailors character, Star Sailors compatibility test">
+  <link rel="alternate" hreflang="en" href="https://starsailors-guide.com/en/quiz.html">
+  <link rel="alternate" hreflang="id" href="https://starsailors-guide.com/id/quiz.html">
+  <link rel="alternate" hreflang="x-default" href="https://starsailors-guide.com/">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Personality Quiz - Star Sailors Guide &amp; Wiki",
+    "url": "https://starsailors-guide.com/en/quiz.html",
+    "description": "Take the Star Sailors personality quiz to discover which character, battle style, and class path matches your soul.",
+    "inLanguage": "en"
+  }
+  </script>
+  <style>
+    .quiz-page { min-height: 60vh; display: flex; align-items: center; justify-content: center; }
+    .quiz-intro { text-align: center; max-width: 600px; margin: 0 auto; }
+    .quiz-intro p { color: var(--text-secondary); margin-bottom: 24px; font-size: 1.05rem; line-height: 1.7; }
+    .quiz-hidden { display: none !important; }
+    .quiz-question { display: none; }
+    .quiz-question.active { display: block; }
+    .quiz-result { display: none; }
+    .quiz-result.show { display: block; padding: 48px 32px; }
+    .result-bar-wrap { margin: 8px 0; display: flex; align-items: center; gap: 12px; }
+    .result-bar-label { width: 70px; text-align: right; font-size: 0.85rem; font-weight: 600; color: var(--text-primary); flex-shrink: 0; }
+    .result-bar-track { flex: 1; height: 10px; background: var(--bg-primary); border-radius: 5px; overflow: hidden; }
+    .result-bar-fill { height: 100%; border-radius: 5px; transition: width 1s ease; }
+    .result-bar-fill.nina { background: linear-gradient(90deg, #ec4899, #f472b6); }
+    .result-bar-fill.jen { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    .result-bar-fill.dora { background: linear-gradient(90deg, #10b981, #34d399); }
+    .result-bar-fill.mui { background: linear-gradient(90deg, #00d4d4, #22d3ee); }
+    .quiz-nav-btns { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">&#10022;</span>
+        <span>Star Sailors Guide</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="beginner.html">Beginner Guide</a>
+        <a href="characters.html">Characters</a>
+        <a href="battle.html">Battle Strategy</a>
+        <a href="equipment.html">Equipment</a>
+        <a href="quiz.html">Personality Quiz</a>
+      </div>
+      <div class="lang-switch">
+        <button class="lang-btn active" disabled title="English">EN</button>
+        <span class="lang-divider">|</span>
+        <button class="lang-btn" onclick="switchLang('id')" title="Bahasa Indonesia">ID</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> / <span>Personality Quiz</span>
+    </div>
+
+    <section class="hero-inner">
+      <div class="hero-content animate-in">
+        <span class="hero-badge">PERSONALITY QUIZ</span>
+        <h1>Personality Quiz</h1>
+        <p>Answer 8 simple questions to discover which Star Sailors character, battle style, and class path matches your soul</p>
+      </div>
+    </section>
+
+    <section class="section quiz-page">
+      <div class="section-inner">
+        <div class="quiz-container">
+          <!-- Intro -->
+          <div id="quiz-intro" class="quiz-intro animate-on-scroll">
+            <p>In the vast universe of Star Sailors, every captain has their own battle style and soul companion. Through this quiz, we will analyze your personality preferences and combat philosophy to match you with your ideal character, playstyle, and class path.</p>
+            <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+          </div>
+
+          <!-- Quiz Questions -->
+          <div id="quiz-questions" class="quiz-hidden">
+            <div class="quiz-progress" id="quiz-progress"></div>
+
+            <div class="quiz-question" data-q="0">
+              <h2>Q1: In a team, what role do you prefer to play?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(0, 'nina')">Lead the charge and defeat enemies with your own hands -- Damage Dealer</button>
+                <button class="quiz-option" onclick="answer(0, 'jen')">Control the battlefield with wisdom and strategy -- Magic Master</button>
+                <button class="quiz-option" onclick="answer(0, 'mui')">Protect your allies as the team's unbreakable shield -- Frontline Tank</button>
+                <button class="quiz-option" onclick="answer(0, 'dora')">Support your comrades so the team can unleash its full potential -- Healer</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="1">
+              <h2>Q2: When facing a powerful enemy, what is your first instinct?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(1, 'nina')">Charge straight in and take it down with maximum firepower</button>
+                <button class="quiz-option" onclick="answer(1, 'jen')">Analyze its weakness and strike precisely with elemental counters</button>
+                <button class="quiz-option" onclick="answer(1, 'mui')">Stand in front of your allies, absorb the damage, then find an opening</button>
+                <button class="quiz-option" onclick="answer(1, 'dora')">Buff your teammates first, then face the threat together</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="2">
+              <h2>Q3: What is your preferred battle tempo?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(2, 'nina')">Fast and decisive -- wipe them out with high burst damage</button>
+                <button class="quiz-option" onclick="answer(2, 'jen')">Stylish combos -- clear the field with AoE attacks</button>
+                <button class="quiz-option" onclick="answer(2, 'mui')">Steady and methodical -- wear them down with impenetrable defense</button>
+                <button class="quiz-option" onclick="answer(2, 'dora')">Sustained healing -- keep the team standing forever</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="3">
+              <h2>Q4: If you acquire a rare piece of equipment, your priority would be to:</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(3, 'nina')">Enhance your weapon to maximize offensive power</button>
+                <button class="quiz-option" onclick="answer(3, 'jen')">Study attribute combinations and chase perfect stat rolls</button>
+                <button class="quiz-option" onclick="answer(3, 'mui')">Reinforce your armor first to boost survivability</button>
+                <button class="quiz-option" onclick="answer(3, 'dora')">Choose a support accessory to amplify team effects</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="4">
+              <h2>Q5: On an adventure, what do you value most?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(4, 'nina')">The thrill of defeating powerful enemies and earning glory</button>
+                <button class="quiz-option" onclick="answer(4, 'jen')">Exploring the mysteries and wonders of unknown worlds</button>
+                <button class="quiz-option" onclick="answer(4, 'mui')">Keeping your companions safe -- no one gets left behind</button>
+                <button class="quiz-option" onclick="answer(4, 'dora')">Building deep emotional bonds with your companions</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="5">
+              <h2>Q6: Which quote best reflects your outlook on life?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(5, 'nina')">"Justice serves a greater cause. I will not retreat."</button>
+                <button class="quiz-option" onclick="answer(5, 'jen')">"I was born to lead others. It is my calling."</button>
+                <button class="quiz-option" onclick="answer(5, 'mui')">"Protecting what matters in silence -- that is my path."</button>
+                <button class="quiz-option" onclick="answer(5, 'dora')">"Filling this world with love and sweetness is my dream."</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="6">
+              <h2>Q7: How would you spend your ideal weekend?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(6, 'nina')">Extreme sports -- chasing the adrenaline rush</button>
+                <button class="quiz-option" onclick="answer(6, 'jen')">Reading and learning -- immersing yourself in a sea of knowledge</button>
+                <button class="quiz-option" onclick="answer(6, 'mui')">Staying home and relaxing -- enjoying quiet solitude</button>
+                <button class="quiz-option" onclick="answer(6, 'dora')">Meeting up with friends -- sharing good food and laughter</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="7">
+              <h2>Q8: What kind of adventure companion do you dream of?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(7, 'nina')">Powerful and fierce -- fighting shoulder to shoulder in the front lines</button>
+                <button class="quiz-option" onclick="answer(7, 'jen')">Brilliant and wise -- offering strategic advice at critical moments</button>
+                <button class="quiz-option" onclick="answer(7, 'mui')">Steadfast and reliable -- always stepping up in times of danger</button>
+                <button class="quiz-option" onclick="answer(7, 'dora')">Warm and caring -- giving you comfort and strength when you're weary</button>
+              </div>
+            </div>
+
+            <div class="quiz-nav-btns">
+              <button class="btn btn-outline" id="btn-prev" style="display:none;" onclick="prevQuestion()">&#8592; Previous</button>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div id="quiz-result" class="quiz-result">
+            <img id="result-img" class="result-img" src="" alt="">
+            <h2 id="result-name"></h2>
+            <span id="result-role" class="result-role"></span>
+            <p id="result-desc"></p>
+            <div id="result-bars" style="max-width: 400px; margin: 16px auto;"></div>
+            <div class="result-stats" id="result-stats"></div>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:8px;"><em id="result-path"></em></p>
+            <div class="quiz-nav-btns">
+              <button class="btn btn-outline" onclick="resetQuiz()">Retake Quiz</button>
+              <a href="characters.html" class="btn btn-primary">View Characters</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>About This Site</h4>
+        <p>Star Sailors Guide &amp; Wiki is a fan-made resource site dedicated to providing comprehensive, up-to-date game guides, character databases, and strategy tips.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Guide Navigation</h4>
+        <a href="beginner.html">Beginner Guide</a>
+        <a href="characters.html">Characters</a>
+        <a href="battle.html">Battle Strategy</a>
+        <a href="equipment.html">Equipment</a>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="quiz.html">Personality Quiz</a>
+        <a href="battle.html#team">Team Builds</a>
+        <a href="equipment.html#upgrade">Upgrade Path</a>
+      </div>
+      <div class="footer-col">
+        <h4>Related Links</h4>
+        <a href="https://starsailors.com2us.com" target="_blank" rel="noopener">Official Website</a>
+        <a href="https://m.ourplay.net/rank/detail/313368" target="_blank" rel="noopener">OurPlay Download</a>
+      </div>
+    </div>
+    <div class="friend-links">
+      <h4>Friends &amp; Partners</h4>
+      <div class="links-row">
+        <a href="https://gamesergo.com" target="_blank" rel="noopener">GameSergo</a>
+        <a href="https://gamenamgo.com" target="_blank" rel="noopener">GameNamGo</a>
+        <a href="https://gamehpogo.com/" target="_blank" rel="noopener">GameHpogo</a>
+        <a href="https://gamehpego.com" target="_blank" rel="noopener">GameHpego</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Star Sailors Guide &amp; Wiki &middot; Fan-made resource site &middot; Game copyright belongs to Com2uS Holdings</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    let scores = { nina: 0, jen: 0, dora: 0, mui: 0 };
+    let currentQ = 0;
+    const totalQ = 8;
+
+    const characters = {
+      nina: {
+        name: 'Nina Stingblade',
+        role: 'DPS &middot; Dark Element Gunner',
+        img: 'https://aka.doubaocdn.com/s/FT6a1wbwty',
+        desc: 'Your soul resonates with <strong>Nina Stingblade</strong>! You are a decisive and determined person of action who believes in proving yourself through strength. In battle, you favor aggressive offense and pursue extreme burst damage, finishing opponents with overwhelming firepower. You are suited for the <strong>Striker</strong> class path, paired with high-crit, high-mobility equipment sets.',
+        path: 'Recommended Playstyle: Burst DPS | Recommended Class: Striker | Core Stats: ATK &gt; SPD &gt; Crit',
+        stats: { ATK: 'S', SPD: 'A', DEF: 'B' }
+      },
+      jen: {
+        name: 'Princess Jen',
+        role: 'Mage &middot; Wind Element Sorceress',
+        img: 'https://aka.doubaocdn.com/s/UdwE1wbwty',
+        desc: 'Your soul resonates with <strong>Princess Jen</strong>! You possess noble elegance and sharp insight, preferring to solve problems with intellect rather than brute force. In battle, you emphasize elemental counters and skill combos, excelling in area damage and battlefield control. You are suited for the <strong>Mystic</strong> class path, pursuing perfect attribute synergy and combo chains.',
+        path: 'Recommended Playstyle: Elemental Control | Recommended Class: Mystic | Core Stats: MAG &gt; SPD &gt; HP',
+        stats: { MAG: 'S', SUP: 'A', DEF: 'C' }
+      },
+      dora: {
+        name: 'Quarter Rest Dora',
+        role: 'Support &middot; Light Element Healer',
+        img: 'https://aka.doubaocdn.com/s/RScZ1wbwty',
+        desc: 'Your soul resonates with <strong>Quarter Rest Dora</strong>! You have a gentle and kind heart, believing in the power of love and bonds. In battle, you are the team\'s indispensable backbone, using healing and buffs to elevate your allies beyond their normal limits. You are suited for the healer specialization within the <strong>Mystic</strong> class path -- become the team\'s perpetual engine.',
+        path: 'Recommended Playstyle: Eternal Healing | Recommended Class: Mystic &mdash; Healer Spec | Core Stats: Heal &gt; HP &gt; MAG',
+        stats: { Heal: 'S', MAG: 'A', SPD: 'A' }
+      },
+      mui: {
+        name: 'Mui',
+        role: 'Tank &middot; Dark Element Guardian',
+        img: 'https://aka.doubaocdn.com/s/dgOm1wbwty',
+        desc: 'Your soul resonates with <strong>Mui</strong>! You are the type who appears cold on the outside but warm within, expressing care through actions rather than words. In battle, you are the team\'s most reliable bulwark, using impenetrable defense to create space for your allies. You are suited for the <strong>Guardian</strong> class path -- become the shield that never falls.',
+        path: 'Recommended Playstyle: Iron Fortress | Recommended Class: Guardian | Core Stats: DEF &gt; HP &gt; Counter',
+        stats: { DEF: 'S', HP: 'A', SPD: 'C' }
+      }
+    };
+
+    function startQuiz() {
+      document.getElementById('quiz-intro').classList.add('quiz-hidden');
+      document.getElementById('quiz-questions').classList.remove('quiz-hidden');
+      scores = { nina: 0, jen: 0, dora: 0, mui: 0 };
+      currentQ = 0;
+      buildProgress();
+      showQuestion(0);
+    }
+
+    function buildProgress() {
+      const container = document.getElementById('quiz-progress');
+      container.innerHTML = '';
+      for (let i = 0; i < totalQ; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'quiz-progress-dot';
+        dot.id = 'dot-' + i;
+        container.appendChild(dot);
+      }
+    }
+
+    function showQuestion(idx) {
+      document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
+      const q = document.querySelector('.quiz-question[data-q="' + idx + '"]');
+      if (q) q.classList.add('active');
+      document.getElementById('btn-prev').style.display = idx > 0 ? 'inline-flex' : 'none';
+      updateDots();
+    }
+
+    function answer(qIdx, charKey) {
+      scores[charKey] += 1;
+      if (currentQ < totalQ - 1) {
+        currentQ++;
+        showQuestion(currentQ);
+      } else {
+        showResult();
+      }
+      updateDots();
+    }
+
+    function prevQuestion() {
+      if (currentQ > 0) { currentQ--; showQuestion(currentQ); }
+    }
+
+    function updateDots() {
+      for (let i = 0; i < totalQ; i++) {
+        const dot = document.getElementById('dot-' + i);
+        if (!dot) continue;
+        dot.classList.remove('active', 'done');
+        if (i < currentQ) dot.classList.add('done');
+        else if (i === currentQ) dot.classList.add('active');
+      }
+      // Mark all done on result
+      if (currentQ >= totalQ - 1) {
+        for (let i = 0; i < totalQ; i++) {
+          const dot = document.getElementById('dot-' + i);
+          if (dot) { dot.classList.remove('active'); dot.classList.add('done'); }
+        }
+      }
+    }
+
+    function showResult() {
+      document.getElementById('quiz-questions').classList.add('quiz-hidden');
+      document.getElementById('quiz-progress').innerHTML = '';
+      const resultDiv = document.getElementById('quiz-result');
+      resultDiv.classList.add('show');
+
+      let maxKey = 'nina';
+      let maxScore = 0;
+      for (const [k, v] of Object.entries(scores)) {
+        if (v > maxScore) { maxScore = v; maxKey = k; }
+      }
+
+      const char = characters[maxKey];
+      document.getElementById('result-img').src = char.img;
+      document.getElementById('result-name').textContent = char.name;
+      document.getElementById('result-role').innerHTML = char.role;
+      document.getElementById('result-desc').innerHTML = char.desc;
+      document.getElementById('result-path').textContent = char.path;
+
+      // Stats
+      const statsDiv = document.getElementById('result-stats');
+      statsDiv.innerHTML = '';
+      for (const [k, v] of Object.entries(char.stats)) {
+        statsDiv.innerHTML += '<div class="result-stat"><div class="val">' + v + '</div><div class="lbl">' + k + '</div></div>';
+      }
+
+      // Score bars
+      const barsDiv = document.getElementById('result-bars');
+      barsDiv.innerHTML = '';
+      const labels = { nina: 'Nina', jen: 'Princess Jen', dora: 'Dora', mui: 'Mui' };
+      const classes = { nina: 'nina', jen: 'jen', dora: 'dora', mui: 'mui' };
+      const totalAnswers = totalQ;
+      for (const [k, v] of Object.entries(scores)) {
+        const pct = Math.round((v / totalAnswers) * 100);
+        barsDiv.innerHTML +=
+          '<div class="result-bar-wrap">' +
+          '<span class="result-bar-label">' + labels[k] + '</span>' +
+          '<div class="result-bar-track"><div class="result-bar-fill ' + classes[k] + '" style="width:' + pct + '%"></div></div>' +
+          '<span style="font-size:0.8rem;color:var(--text-muted);width:36px;">' + pct + '%</span>' +
+          '</div>';
+      }
+
+      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetQuiz() {
+      document.getElementById('quiz-result').classList.remove('show');
+      document.getElementById('quiz-intro').classList.remove('quiz-hidden');
+      scores = { nina: 0, jen: 0, dora: 0, mui: 0 };
+      currentQ = 0;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

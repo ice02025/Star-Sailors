@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>角色图鉴 - Star Sailors 星际水手攻略站</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">✦</span>
+        <span>星际水手攻略站</span>
+      </a>
+      <button class="nav-toggle" aria-label="菜单">☰</button>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+        <a href="quiz.html">角色相性测试</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">首页</a> / <span>角色图鉴</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero-inner">
+      <div class="hero-content animate-in">
+        <span class="hero-badge">CHARACTERS</span>
+        <h1>角色图鉴</h1>
+        <p>一览所有可参战伙伴的详细信息，了解每位角色的定位、技能与属性，打造你的专属星际战队</p>
+      </div>
+    </section>
+
+    <!-- 角色一览 -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">CHARACTER GALLERY</span>
+          <h2>角色一览</h2>
+          <p>以下收录了目前游戏中可获取的全部角色，点击角色卡片查看详细信息</p>
+        </div>
+        <div class="characters-grid">
+          <!-- Nina Stingblade -->
+          <div class="char-card animate-on-scroll">
+            <img class="char-card-img" src="https://aka.doubaocdn.com/s/FT6a1wbwty" alt="Nina Stingblade" loading="lazy">
+            <div class="char-card-body">
+              <span class="char-role dps">输出型</span>
+              <h3>Nina Stingblade</h3>
+              <p class="char-quote">"我的正义服务于更伟大的事业。"</p>
+              <p>冷酷的双面特工与策略型枪手，擅长远程爆发输出。元素属性：暗。技能：暗影弹幕（群体）、终结处决（单体高伤）。</p>
+              <div class="char-stats">
+                <div class="char-stat"><div class="stat-value">S</div><div class="stat-label">攻击</div></div>
+                <div class="char-stat"><div class="stat-value">B</div><div class="stat-label">防御</div></div>
+                <div class="char-stat"><div class="stat-value">A</div><div class="stat-label">速度</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Princess Jen -->
+          <div class="char-card animate-on-scroll">
+            <img class="char-card-img" src="https://aka.doubaocdn.com/s/UdwE1wbwty" alt="Princess Jen" loading="lazy">
+            <div class="char-card-body">
+              <span class="char-role mage">魔法型</span>
+              <h3>Princess Jen</h3>
+              <p class="char-quote">"你竟敢俯视本公主？"</p>
+              <p>母树王国第159位公主，强大的自然魔法使用者。元素属性：风。技能：荆棘之怒（群攻）、皇家号令（增益）。</p>
+              <div class="char-stats">
+                <div class="char-stat"><div class="stat-value">S</div><div class="stat-label">魔法</div></div>
+                <div class="char-stat"><div class="stat-value">C</div><div class="stat-label">防御</div></div>
+                <div class="char-stat"><div class="stat-value">B</div><div class="stat-label">速度</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quarter Rest Dora -->
+          <div class="char-card animate-on-scroll">
+            <img class="char-card-img" src="https://aka.doubaocdn.com/s/RScZ1wbwty" alt="Quarter Rest Dora" loading="lazy">
+            <div class="char-card-body">
+              <span class="char-role support">辅助型</span>
+              <h3>Quarter Rest Dora</h3>
+              <p class="char-quote">"你愿意成为我的伙伴吗？"</p>
+              <p>博爱甜点师，团队核心治疗与增益角色。元素属性：光。技能：甜蜜治愈（回复）、爱心甜点（全体护盾）。</p>
+              <div class="char-stats">
+                <div class="char-stat"><div class="stat-value">A</div><div class="stat-label">魔法</div></div>
+                <div class="char-stat"><div class="stat-value">S</div><div class="stat-label">生命</div></div>
+                <div class="char-stat"><div class="stat-value">B</div><div class="stat-label">速度</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mui -->
+          <div class="char-card animate-on-scroll">
+            <img class="char-card-img" src="https://aka.doubaocdn.com/s/dgOm1wbwty" alt="Mui" loading="lazy">
+            <div class="char-card-body">
+              <span class="char-role tank">坦克型</span>
+              <h3>Mui</h3>
+              <p class="char-quote">"我迷路了，但总有一天会相遇。"</p>
+              <p>害羞的小恶魔旅行者，拥有极高防御与生命值。元素属性：暗。技能：恶魔屏障（嘲讽减伤）、角突刺（反击）。</p>
+              <div class="char-stats">
+                <div class="char-stat"><div class="stat-value">C</div><div class="stat-label">攻击</div></div>
+                <div class="char-stat"><div class="stat-value">S</div><div class="stat-label">防御</div></div>
+                <div class="char-stat"><div class="stat-value">C</div><div class="stat-label">速度</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Luna -->
+          <div class="char-card animate-on-scroll">
+            <img class="char-card-img" src="https://aka.doubaocdn.com/s/YMgZ1wbwty" alt="Luna" loading="lazy">
+            <div class="char-card-body">
+              <span class="char-role mage">魔法型</span>
+              <h3>Luna</h3>
+              <p class="char-quote">"月光会指引我们前行。"</p>
+              <p>神秘的月光魔女，擅长范围魔法与控制。元素属性：光。技能：月华之舞（群攻）、银辉禁锢（控制）。</p>
+              <div class="char-stats">
+                <div class="char-stat"><div class="stat-value">S</div><div class="stat-label">魔法</div></div>
+                <div class="char-stat"><div class="stat-value">C</div><div class="stat-label">防御</div></div>
+                <div class="char-stat"><div class="stat-value">A</div><div class="stat-label">速度</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kai -->
+          <div class="char-card animate-on-scroll">
+            <img class="char-card-img" src="https://aka.doubaocdn.com/s/pSC41wbwty" alt="Kai" loading="lazy">
+            <div class="char-card-body">
+              <span class="char-role dps">输出型</span>
+              <h3>Kai</h3>
+              <p class="char-quote">"剑就是我的一切。"</p>
+              <p>流浪剑客，高暴击近战输出。元素属性：火。技能：烈焰斩（穿透）、剑刃风暴（多段）。</p>
+              <div class="char-stats">
+                <div class="char-stat"><div class="stat-value">S</div><div class="stat-label">攻击</div></div>
+                <div class="char-stat"><div class="stat-value">B</div><div class="stat-label">防御</div></div>
+                <div class="char-stat"><div class="stat-value">A</div><div class="stat-label">速度</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sera -->
+          <div class="char-card animate-on-scroll">
+            <img class="char-card-img" src="https://aka.doubaocdn.com/s/QeM61wbwty" alt="Sera" loading="lazy">
+            <div class="char-card-body">
+              <span class="char-role support">辅助型</span>
+              <h3>Sera</h3>
+              <p class="char-quote">"科技就是力量。"</p>
+              <p>天才机械师，提供团队增益与敌方减益。元素属性：水。技能：能量灌注（加速）、电磁干扰（减益）。</p>
+              <div class="char-stats">
+                <div class="char-stat"><div class="stat-value">A</div><div class="stat-label">魔法</div></div>
+                <div class="char-stat"><div class="stat-value">A</div><div class="stat-label">生命</div></div>
+                <div class="char-stat"><div class="stat-value">S</div><div class="stat-label">速度</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Raven -->
+          <div class="char-card animate-on-scroll">
+            <img class="char-card-img" src="https://aka.doubaocdn.com/s/gVGJ1wbwty" alt="Raven" loading="lazy">
+            <div class="char-card-body">
+              <span class="char-role tank">坦克型</span>
+              <h3>Raven</h3>
+              <p class="char-quote">"守护弱者是我的使命。"</p>
+              <p>铁壁骑士，可靠的团队前排护卫。元素属性：火。技能：荣耀之盾（全体防御）、正义冲锋（嘲讽）。</p>
+              <div class="char-stats">
+                <div class="char-stat"><div class="stat-value">B</div><div class="stat-label">攻击</div></div>
+                <div class="char-stat"><div class="stat-value">S</div><div class="stat-label">防御</div></div>
+                <div class="char-stat"><div class="stat-value">C</div><div class="stat-label">速度</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 职业系统详解 -->
+    <section class="section section-dark">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">CLASS SYSTEM</span>
+          <h2>职业系统详解</h2>
+          <p>了解三大职业路线的定位与特点，选择最适合你战斗风格的职业方向</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>职业</th>
+                <th>定位</th>
+                <th>特点</th>
+                <th>代表角色</th>
+                <th>推荐人群</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Striker 突击者</strong></td>
+                <td>近战输出</td>
+                <td>高暴击 / 高机动</td>
+                <td>Nina, Kai</td>
+                <td>喜欢主动出击的玩家</td>
+              </tr>
+              <tr>
+                <td><strong>Guardian 守护者</strong></td>
+                <td>前排坦克</td>
+                <td>高防御 / 嘲讽 / 反击</td>
+                <td>Mui, Raven</td>
+                <td>喜欢稳扎稳打的玩家</td>
+              </tr>
+              <tr>
+                <td><strong>Mystic 秘术师</strong></td>
+                <td>魔法与辅助</td>
+                <td>群攻 / 治疗 / 控制</td>
+                <td>Princess Jen, Dora, Luna, Sera</td>
+                <td>喜欢策略布局的玩家</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 元素克制表 -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">ELEMENT SYSTEM</span>
+          <h2>元素克制表</h2>
+          <p>掌握五种元素之间的克制关系，在战斗中针对敌人弱点进行克制攻击，获得伤害加成</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>攻击属性</th>
+                <th>克制（伤害 x1.5）</th>
+                <th>被克制（伤害 x0.75）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ef4444;margin-right:6px;vertical-align:middle;"></span>火</strong></td>
+                <td>风</td>
+                <td>水</td>
+              </tr>
+              <tr>
+                <td><strong><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#3b82f6;margin-right:6px;vertical-align:middle;"></span>水</strong></td>
+                <td>火</td>
+                <td>风</td>
+              </tr>
+              <tr>
+                <td><strong><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#22c55e;margin-right:6px;vertical-align:middle;"></span>风</strong></td>
+                <td>水</td>
+                <td>火</td>
+              </tr>
+              <tr>
+                <td><strong><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#fbbf24;margin-right:6px;vertical-align:middle;"></span>光</strong></td>
+                <td>暗（互相克制，伤害 x1.5）</td>
+                <td>暗（互相克制，伤害 x1.5）</td>
+              </tr>
+              <tr>
+                <td><strong><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#7c3aed;margin-right:6px;vertical-align:middle;"></span>暗</strong></td>
+                <td>光（互相克制，伤害 x1.5）</td>
+                <td>光（互相克制，伤害 x1.5）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:20px; padding:20px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md);" class="animate-on-scroll">
+          <p style="color:var(--text-secondary); font-size:0.93rem; line-height:1.8;">
+            <strong style="color:var(--accent);">克制规则说明：</strong><br>
+            火 → 风 → 水 → 火 形成三元素循环克制链。光与暗互为克制关系，彼此攻击对方时均享受伤害加成（x1.5）。在组队时建议至少覆盖2-3种元素属性，以应对不同敌人弱点。被克制时伤害降低至0.75倍，请尽量避免使用被克制元素攻击敌人。
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>关于本站</h4>
+        <p>星际水手（Star Sailors）非官方中文攻略资料站，致力于为中文玩家提供全面、及时的游戏攻略、角色资料与策略指南。本站为玩家社区自制，与 Com2uS Holdings 无直接关联。</p>
+      </div>
+      <div class="footer-col">
+        <h4>攻略导航</h4>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+      </div>
+      <div class="footer-col">
+        <h4>实用工具</h4>
+        <a href="quiz.html">角色相性测试</a>
+        <a href="battle.html#team">组队推荐</a>
+        <a href="equipment.html#upgrade">升级路线</a>
+        <a href="beginner.html#tips">常见问题</a>
+      </div>
+      <div class="footer-col">
+        <h4>相关链接</h4>
+        <a href="https://starsailors.com2us.com" target="_blank" rel="noopener">官方网站</a>
+        <a href="https://www.youtube.com/watch?v=XOCSAWgDJrg" target="_blank" rel="noopener">官方预告片</a>
+        <a href="https://m.ourplay.net/rank/detail/313368" target="_blank" rel="noopener">OurPlay下载</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Star Sailors 星际水手攻略站 · 本站为玩家社区自制资料站 · 游戏版权归 Com2uS Holdings 所有</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

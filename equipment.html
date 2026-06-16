@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>装备养成 - Star Sailors 星际水手攻略站</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">✦</span>
+        <span>星际水手攻略站</span>
+      </a>
+      <button class="nav-toggle" aria-label="菜单">☰</button>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+        <a href="quiz.html">角色相性测试</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">首页</a> / <span>装备养成</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero-inner">
+      <div class="hero-content animate-in">
+        <span class="hero-badge">EQUIPMENT & UPGRADE</span>
+        <h1>装备与养成指南</h1>
+        <p>深入了解装备系统与角色养成路线，打造最强星际战队</p>
+      </div>
+    </section>
+
+    <!-- Section 1: 装备系统概述 -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">EQUIPMENT SYSTEM</span>
+          <h2>装备系统概述</h2>
+          <p>全面了解星际水手的装备机制，为养成路线打下坚实基础</p>
+        </div>
+        <div class="feature-block animate-on-scroll">
+          <div class="feature-text">
+            <h3>装备系统简介</h3>
+            <p>星际水手的装备系统是提升角色战力的核心途径。每位伙伴可装备武器、防具、饰品三类装备，不同稀有度的装备拥有不同的属性加成和套装效果。装备可通过地下城掉落、活动奖励和锻造系统获取。合理搭配装备套装是后期战斗的关键。</p>
+          </div>
+          <div class="feature-image">
+            <img src="https://aka.doubaocdn.com/s/YmFh1wbwty" alt="装备系统" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: 装备类型与稀有度 -->
+    <section class="section section-dark">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">RARITY & TYPES</span>
+          <h2>装备类型与稀有度</h2>
+          <p>了解装备的稀有度等级与套装效果，找到最适合你队伍的装备搭配</p>
+        </div>
+        <div class="table-wrap animate-on-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>稀有度</th>
+                <th>颜色标识</th>
+                <th>基础属性数</th>
+                <th>套装效果</th>
+                <th>获取途径</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>N (普通)</td>
+                <td>白</td>
+                <td>1条</td>
+                <td>无</td>
+                <td>主线掉落/商店购买</td>
+              </tr>
+              <tr>
+                <td>R (稀有)</td>
+                <td>蓝</td>
+                <td>2条</td>
+                <td>2件套小加成</td>
+                <td>地下城/活动</td>
+              </tr>
+              <tr>
+                <td>SR (史诗)</td>
+                <td>紫</td>
+                <td>3条</td>
+                <td>3件套中加成</td>
+                <td>高难地下城/锻造</td>
+              </tr>
+              <tr>
+                <td>SSR (传说)</td>
+                <td>金</td>
+                <td>4条</td>
+                <td>4件套大加成+特殊效果</td>
+                <td>团队副本/限定活动</td>
+              </tr>
+              <tr>
+                <td>UR (神话)</td>
+                <td>彩虹</td>
+                <td>5条+专属技能</td>
+                <td>5件套终极效果</td>
+                <td>高难团队副本/天梯奖励</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: 伙伴升级系统 -->
+    <section class="section" id="upgrade">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">UPGRADE SYSTEM</span>
+          <h2>伙伴升级系统</h2>
+          <p>按步骤完成伙伴养成，每一步都至关重要</p>
+        </div>
+        <div class="step-list">
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>等级提升</h3>
+              <p>消耗经验药水提升伙伴基础等级，等级上限随账号等级提升而解锁（优先培养核心角色）</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>技能升级</h3>
+              <p>消耗技能书提升技能等级，提高技能伤害倍率和效果数值（优先升级主力输出技能）</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>突破觉醒</h3>
+              <p>收集角色碎片突破等级上限，解锁新的被动技能和外观变化（关键养成节点）</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>装备强化</h3>
+              <p>消耗金币和强化石提升装备等级，每+5级有一次大成功机会（优先强化武器）</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h3>套装激活</h3>
+              <p>穿戴同一套装的多个部件激活套装效果，策略性搭配不同套装组合</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 资源获取指南 -->
+    <section class="section section-dark">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">RESOURCES</span>
+          <h2>资源获取指南</h2>
+          <p>合理规划资源获取优先级，让每一份材料都物尽其用</p>
+        </div>
+        <div class="table-wrap animate-on-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>资源类型</th>
+                <th>主要用途</th>
+                <th>获取途径</th>
+                <th>优先级</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>金币 (Gold)</td>
+                <td>装备强化/商店购买</td>
+                <td>主线关卡/每日任务/地下城</td>
+                <td>★★★★★</td>
+              </tr>
+              <tr>
+                <td>经验药水 (EXP Potion)</td>
+                <td>伙伴升级</td>
+                <td>每日任务/活动/地下城</td>
+                <td>★★★★★</td>
+              </tr>
+              <tr>
+                <td>技能书 (Skill Book)</td>
+                <td>技能升级</td>
+                <td>地下城/竞技场/活动</td>
+                <td>★★★★</td>
+              </tr>
+              <tr>
+                <td>强化石 (Enhance Stone)</td>
+                <td>装备强化</td>
+                <td>分解装备/地下城/活动</td>
+                <td>★★★★</td>
+              </tr>
+              <tr>
+                <td>角色碎片 (Fragment)</td>
+                <td>突破觉醒</td>
+                <td>抽卡/活动/商店</td>
+                <td>★★★★</td>
+              </tr>
+              <tr>
+                <td>觉醒材料 (Awaken Mat)</td>
+                <td>突破觉醒</td>
+                <td>高难地下城/团队副本</td>
+                <td>★★★</td>
+              </tr>
+              <tr>
+                <td>套装铸魂石 (Set Stone)</td>
+                <td>套装激活/重置</td>
+                <td>团队副本/活动</td>
+                <td>★★★</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 养成路线推荐 -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">BUILD PATH</span>
+          <h2>养成路线推荐</h2>
+          <p>针对不同阶段的玩家，提供最优养成路线规划</p>
+        </div>
+        <div class="cards-grid">
+          <div class="card animate-on-scroll">
+            <div class="card-icon cyan"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20"/><path d="M7 6c0 0 3-4 5-4s5 4 5 4"/><path d="M7 6c0 3 2 5 5 5s5-2 5-5"/></svg></div>
+            <h3>新手期养成路线</h3>
+            <p>优先将主力角色提升至30级 → 解锁全部技能 → 装备R级套装 → 推进主线至第二章。资源集中投入1-2个核心输出角色。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon purple"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg></div>
+            <h3>中期养成路线</h3>
+            <p>主力角色突破至50级 → 技能升至5级 → 收集SR级装备套装 → 开始挑战团队副本。组建2支完整队伍应对不同场景。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon gold"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20"/><path d="M3 20L5 8h14l2 12"/><path d="M12 8V4"/><path d="M8 4l4-2 4 2"/></svg></div>
+            <h3>后期养成路线</h3>
+            <p>核心角色满级突破 → 全技能满级 → SSR/UR套装毕业 → 天梯竞技场冲榜。追求完美词条与套装搭配是后期核心玩法。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 每日必做清单 -->
+    <section class="section section-dark">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">DAILY CHECKLIST</span>
+          <h2>每日必做清单</h2>
+          <p>每天完成这些任务，确保养成效率最大化</p>
+        </div>
+        <div class="animate-on-scroll">
+          <div class="tip-card success">
+            <h4>完成6条每日伙伴故事</h4>
+            <p>最稳定的经验药水和金币来源</p>
+          </div>
+          <div class="tip-card info">
+            <h4>挑战地下城获取装备材料</h4>
+            <p>根据需要的装备类型选择对应地下城</p>
+          </div>
+          <div class="tip-card warning">
+            <h4>参与限时活动</h4>
+            <p>活动奖励通常包含限定装备和大量养成资源</p>
+          </div>
+          <div class="tip-card success">
+            <h4>检查商店刷新</h4>
+            <p>每日免费刷新商店，购买打折的技能书和碎片</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>关于本站</h4>
+        <p>星际水手（Star Sailors）非官方中文攻略资料站，致力于为中文玩家提供全面、及时的游戏攻略、角色资料与策略指南。本站为玩家社区自制，与 Com2uS Holdings 无直接关联。</p>
+      </div>
+      <div class="footer-col">
+        <h4>攻略导航</h4>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+      </div>
+      <div class="footer-col">
+        <h4>实用工具</h4>
+        <a href="quiz.html">角色相性测试</a>
+        <a href="battle.html#team">组队推荐</a>
+        <a href="equipment.html#upgrade">升级路线</a>
+        <a href="beginner.html#tips">常见问题</a>
+      </div>
+      <div class="footer-col">
+        <h4>相关链接</h4>
+        <a href="https://starsailors.com2us.com" target="_blank" rel="noopener">官方网站</a>
+        <a href="https://www.youtube.com/watch?v=XOCSAWgDJrg" target="_blank" rel="noopener">官方预告片</a>
+        <a href="https://m.ourplay.net/rank/detail/313368" target="_blank" rel="noopener">OurPlay下载</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Star Sailors 星际水手攻略站 · 本站为玩家社区自制资料站 · 游戏版权归 Com2uS Holdings 所有</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>战斗策略 - Star Sailors 星际水手攻略站</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">✦</span>
+        <span>星际水手攻略站</span>
+      </a>
+      <button class="nav-toggle" aria-label="菜单">☰</button>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+        <a href="quiz.html">角色相性测试</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">首页</a> / <span>战斗策略</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero-inner">
+      <div class="hero-content animate-in">
+        <span class="hero-badge">BATTLE STRATEGY</span>
+        <h1>战斗策略指南</h1>
+        <p>深入理解星际水手的战斗系统，掌握制胜关键</p>
+      </div>
+    </section>
+
+    <!-- 战斗系统概述 -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">COMBAT SYSTEM</span>
+          <h2>战斗系统概述</h2>
+          <p>全面了解星际水手独特的战斗机制设计</p>
+        </div>
+        <div class="feature-block animate-on-scroll">
+          <div class="feature-text">
+            <p>星际水手的战斗系统融合了传统回合制RPG的策略深度与QTE动作元素的速度感。每场战斗中，你需要为每个伙伴选择本回合要执行的技能，考虑SP点数的分配、元素克制关系以及Boss的行动模式。在关键时机，屏幕上会出现QTE爆发提示——迅速点击即可触发高额伤害或特殊效果，这是扭转战局的关键机制。</p>
+          </div>
+          <div class="feature-image">
+            <img src="https://aka.doubaocdn.com/s/oXBo1wbwty" alt="战斗系统概述" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 回合制战斗流程 -->
+    <section class="section section-dark">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">BATTLE FLOW</span>
+          <h2>回合制战斗流程</h2>
+          <p>从战前准备到回合结算，掌握完整的战斗节奏</p>
+        </div>
+        <div class="step-list">
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>战前准备</h3>
+              <p>查看敌人信息，根据元素克制调整队伍成员与站位</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>技能选择</h3>
+              <p>为每个伙伴选择技能（注意SP消耗），规划本回合的行动策略</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>执行战斗</h3>
+              <p>点击Battle按钮，角色按速度顺序自动执行指令</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>QTE爆发</h3>
+              <p>抓住屏幕上出现的QTE提示时机，点击触发额外效果</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h3>回合结算</h3>
+              <p>战斗结束后获得经验、金币与掉落物品</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 元素系统详解 -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">ELEMENT SYSTEM</span>
+          <h2>元素系统详解</h2>
+          <p>掌握火、水、风、光、暗五大元素之间的克制关系</p>
+        </div>
+        <div class="table-wrap animate-on-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>元素属性</th>
+                <th>图标</th>
+                <th>克制属性(150%伤害)</th>
+                <th>被克制属性(75%伤害)</th>
+                <th>代表角色</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>火 (Fire)</td>
+                <td><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#ef4444;vertical-align:middle;"></span></td>
+                <td>风</td>
+                <td>水</td>
+                <td>Nina / Kai</td>
+              </tr>
+              <tr>
+                <td>水 (Water)</td>
+                <td><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#3b82f6;vertical-align:middle;"></span></td>
+                <td>火</td>
+                <td>风</td>
+                <td>Sera</td>
+              </tr>
+              <tr>
+                <td>风 (Wind)</td>
+                <td><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#22c55e;vertical-align:middle;"></span></td>
+                <td>水</td>
+                <td>火</td>
+                <td>Princess Jen</td>
+              </tr>
+              <tr>
+                <td>光 (Light)</td>
+                <td><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#fbbf24;vertical-align:middle;"></span></td>
+                <td>与暗互克(伤害x1.5)</td>
+                <td>与暗互克(伤害x1.5)</td>
+                <td>Dora / Luna</td>
+              </tr>
+              <tr>
+                <td>暗 (Dark)</td>
+                <td><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#7c3aed;vertical-align:middle;"></span></td>
+                <td>与光互克(伤害x1.5)</td>
+                <td>与光互克(伤害x1.5)</td>
+                <td>Mui</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SP点数管理 -->
+    <section class="section section-dark">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">SP MANAGEMENT</span>
+          <h2>SP点数管理</h2>
+          <p>合理分配技能资源，让每一次出手都物超所值</p>
+        </div>
+        <div class="feature-block reverse animate-on-scroll">
+          <div class="feature-image">
+            <img src="https://aka.doubaocdn.com/s/rnoO1wbwty" alt="SP点数管理" loading="lazy">
+          </div>
+          <div class="feature-text">
+            <p>SP（Skill Points）是战斗中释放高阶技能的必需资源。每场战斗开始时拥有固定的SP点数，部分伙伴的普通攻击和特定技能可以回复SP。低阶技能消耗1-2点SP，高阶技能可能需要3-5点。合理规划SP的使用顺序是战斗策略的核心——建议在Boss战前保留足够SP，以确保关键时刻能释放必杀技。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 队伍搭配推荐 -->
+    <section class="section" id="team">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">TEAM BUILDING</span>
+          <h2>队伍搭配推荐</h2>
+          <p>根据关卡特点选择最优阵容，三大经典配置助你轻松通关</p>
+        </div>
+        <div class="cards-grid">
+          <div class="card animate-on-scroll">
+            <div class="card-icon cyan"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><rect x="7" y="10" width="4" height="8" rx="1"/><rect x="13" y="6" width="4" height="12" rx="1"/></svg></div>
+            <h3>均衡队伍</h3>
+            <p>推荐阵容：1坦克 + 1治疗 + 2输出。适合大多数关卡，攻守兼备。推荐角色：Mui(坦克) + Dora(治疗) + Nina(输出) + Princess Jen(输出)</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon pink"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg></div>
+            <h3>速攻队伍</h3>
+            <p>推荐阵容：3输出 + 1辅助。适合快速清图和简单关卡，追求极致输出。推荐角色：Nina + Kai + Luna(输出) + Sera(辅助加速)</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon purple"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>防守反击</h3>
+            <p>推荐阵容：2坦克 + 1治疗 + 1输出。适合高难Boss战，以生存和控制为主。推荐角色：Mui + Raven(坦克) + Dora(治疗) + Princess Jen(输出)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Boss战策略 -->
+    <section class="section section-dark">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">BOSS STRATEGY</span>
+          <h2>Boss战策略</h2>
+          <p>面对强大Boss不再束手无策，掌握这些技巧轻松取胜</p>
+        </div>
+        <div class="animate-on-scroll">
+          <div class="tip-card success">
+            <h4>观察Boss行动模式</h4>
+            <p>Boss通常有固定的技能循环，观察2-3回合后即可预判其行动，提前做好防御或打断准备。</p>
+          </div>
+          <div class="tip-card warning">
+            <h4>保留QTE应对关键技能</h4>
+            <p>不要急于使用QTE，留到Boss释放大招前触发爆发，可以打断Boss的致命技能。</p>
+          </div>
+          <div class="tip-card info">
+            <h4>灵活切换目标</h4>
+            <p>Boss战中通常会有召唤小怪，优先清理小怪减轻团队压力，再集中火力攻击Boss。</p>
+          </div>
+          <div class="tip-card success">
+            <h4>准备备用队伍</h4>
+            <p>高难副本建议准备2-3个替换角色，根据Boss属性切换克制的输出角色。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>关于本站</h4>
+        <p>星际水手（Star Sailors）非官方中文攻略资料站，致力于为中文玩家提供全面、及时的游戏攻略、角色资料与策略指南。本站为玩家社区自制，与 Com2uS Holdings 无直接关联。</p>
+      </div>
+      <div class="footer-col">
+        <h4>攻略导航</h4>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+      </div>
+      <div class="footer-col">
+        <h4>实用工具</h4>
+        <a href="quiz.html">角色相性测试</a>
+        <a href="battle.html#team">组队推荐</a>
+        <a href="equipment.html#upgrade">升级路线</a>
+        <a href="beginner.html#tips">常见问题</a>
+      </div>
+      <div class="footer-col">
+        <h4>相关链接</h4>
+        <a href="https://starsailors.com2us.com" target="_blank" rel="noopener">官方网站</a>
+        <a href="https://www.youtube.com/watch?v=XOCSAWgDJrg" target="_blank" rel="noopener">官方预告片</a>
+        <a href="https://m.ourplay.net/rank/detail/313368" target="_blank" rel="noopener">OurPlay下载</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Star Sailors 星际水手攻略站 · 本站为玩家社区自制资料站 · 游戏版权归 Com2uS Holdings 所有</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

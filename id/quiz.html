@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9NPTWK3L4G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9NPTWK3L4G');
+</script>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1691516136077983"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Kecocokan Karakter - Panduan Star Sailors</title>
+  <meta name="description" content="Kuis kepribadian Star Sailors: jawab 8 pertanyaan dan temukan partner yang paling cocok dengan karaktermu. Dapatkan rekomendasi karakter, class, dan playstyle personal.">
+  <meta name="keywords" content="kuis Star Sailors, tes kepribadian Star Sailors, partner cocok Star Sailors, kuis karakter Star Sailors, personality quiz Star Sailors">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="Kuis Kecocokan Karakter Star Sailors - Temukan Partner Sempurna">
+  <meta property="og:description" content="Tes kepribadian interaktif: jawab 8 pertanyaan dan temukan karakter Star Sailors yang paling cocok dengan gaya bermainmu.">
+  <meta property="og:type" content="article">
+  <link rel="alternate" hreflang="id" href="https://starsailors-guide.com/id/quiz.html">
+  <link rel="alternate" hreflang="en" href="https://starsailors-guide.com/en/quiz.html">
+  <link rel="alternate" hreflang="x-default" href="https://starsailors-guide.com/">
+  <link rel="canonical" href="https://starsailors-guide.com/id/quiz.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .quiz-page { min-height: 60vh; display: flex; align-items: center; justify-content: center; }
+    .quiz-intro { text-align: center; max-width: 600px; margin: 0 auto; }
+    .quiz-intro p { color: var(--text-secondary); margin-bottom: 24px; font-size: 1.05rem; line-height: 1.7; }
+    .quiz-hidden { display: none !important; }
+    .quiz-question { display: none; }
+    .quiz-question.active { display: block; }
+    .quiz-result { display: none; }
+    .quiz-result.show { display: block; padding: 48px 32px; }
+    .result-bar-wrap { margin: 8px 0; display: flex; align-items: center; gap: 12px; }
+    .result-bar-label { width: 70px; text-align: right; font-size: 0.85rem; font-weight: 600; color: var(--text-primary); flex-shrink: 0; }
+    .result-bar-track { flex: 1; height: 10px; background: var(--bg-primary); border-radius: 5px; overflow: hidden; }
+    .result-bar-fill { height: 100%; border-radius: 5px; transition: width 1s ease; }
+    .result-bar-fill.nina { background: linear-gradient(90deg, #ec4899, #f472b6); }
+    .result-bar-fill.jen { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    .result-bar-fill.dora { background: linear-gradient(90deg, #10b981, #34d399); }
+    .result-bar-fill.mui { background: linear-gradient(90deg, #00d4d4, #22d3ee); }
+    .quiz-nav-btns { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">✦</span>
+        <span>Panduan Star Sailors</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="beginner.html">Panduan Pemula</a>
+        <a href="characters.html">Database Karakter</a>
+        <a href="battle.html">Strategi Battle</a>
+        <a href="equipment.html">Equipment & Upgrade</a>
+        <a href="quiz.html">Kuis Kecocokan Karakter</a>
+      </div>
+      <div class="lang-switch">
+        <button class="lang-btn" onclick="switchLang('en')" title="English">EN</button>
+        <span class="lang-divider">|</span>
+        <button class="lang-btn active" disabled title="Bahasa Indonesia">ID</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="breadcrumb">
+      <a href="index.html">Beranda</a> / <span>Kuis Kecocokan Karakter</span>
+    </div>
+
+    <section class="hero-inner">
+      <div class="hero-content animate-in">
+        <span class="hero-badge">PERSONALITY QUIZ</span>
+        <h1>Kuis Kecocokan Karakter</h1>
+        <p>Jawab 8 pertanyaan simpel dan temukan karakter Star Sailors yang paling cocok dengan jiwa kamu -- plus rekomendasi playstyle dan jalur class!</p>
+      </div>
+    </section>
+
+    <section class="section quiz-page">
+      <div class="section-inner">
+        <div class="quiz-container">
+          <!-- Intro -->
+          <div id="quiz-intro" class="quiz-intro animate-on-scroll">
+            <p>Di alam semesta Star Sailors yang luas, setiap kapten punya gaya bertarung dan partner jiwa masing-masing. Lewat kuis ini, kami bakal menganalisis preferensi kepribadian dan filosofi bertempur kamu, terus kasih rekomendasi karakter, playstyle, dan jalur class yang paling pas!</p>
+            <button class="btn btn-primary" onclick="startQuiz()">Mulai Kuis</button>
+          </div>
+
+          <!-- Quiz Questions -->
+          <div id="quiz-questions" class="quiz-hidden">
+            <div class="quiz-progress" id="quiz-progress"></div>
+
+            <div class="quiz-question" data-q="0">
+              <h2>Q1: Dalam sebuah tim, kamu lebih suka jadi peran apa?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(0, 'nina')">Terjun langsung, habisi musuh dengan tangan sendiri -- DPS inti</button>
+                <button class="quiz-option" onclick="answer(0, 'jen')">Kendalikan situasi, menang dengan otak dan strategi -- Mage handal</button>
+                <button class="quiz-option" onclick="answer(0, 'mui')">Lindungi teman, jadi benteng terkuat tim -- Tank garis depan</button>
+                <button class="quiz-option" onclick="answer(0, 'dora')">Support teman-teman, bikin tim mengeluarkan potensi maksimal -- Healer & Buffer</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="1">
+              <h2>Q2: Pas ketemu musuh yang kuat banget, reaksi pertama kamu apa?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(1, 'nina')">Langsung serang frontal, habisin dengan damage paling gede</button>
+                <button class="quiz-option" onclick="answer(1, 'jen')">Analisis dulu weakness-nya, serang presisi pake counter elemen</button>
+                <button class="quiz-option" onclick="answer(1, 'mui')">Maju paling depan, tank semua damage dulu baru cari celah</button>
+                <button class="quiz-option" onclick="answer(1, 'dora')">Buff teman-teman dulu biar semuanya siap, baru hadapi bareng-bareng</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="2">
+              <h2>Q3: Ritme battle favorit kamu yang mana?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(2, 'nina')">Cepet selesai, burst damage gede langsung beres</button>
+                <button class="quiz-option" onclick="answer(2, 'jen')">Kombo cantik, AoE sapu bersih semua musuh</button>
+                <button class="quiz-option" onclick="answer(2, 'mui')">Pelan tapi pasti, defense dulu baru counter pelan-pelan</button>
+                <button class="quiz-option" onclick="answer(2, 'dora')">Heal terus-terusan, bikin tim ga pernah tumbang</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="3">
+              <h2>Q4: Kalau dapet equipment langka, kamu bakal prioritasin apa?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(3, 'nina')">Perkuat senjata, maksimalin output damage</button>
+                <button class="quiz-option" onclick="answer(3, 'jen')">Riset kombinasi stats, cari perfect substat</button>
+                <button class="quiz-option" onclick="answer(3, 'mui')">Prioritas armor dulu, ningkatin survivability</button>
+                <button class="quiz-option" onclick="answer(3, 'dora')">Pilih accessory support, perkuat efek tim</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="4">
+              <h2>Q5: Dalam petualangan, hal apa yang paling kamu hargai?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(4, 'nina')">Kepuasan dan kejayaan setelah ngalahin musuh tangguh</button>
+                <button class="quiz-option" onclick="answer(4, 'jen')">Menjelajahi misteri dan keajaiban dunia yang belum dikenal</button>
+                <button class="quiz-option" onclick="answer(4, 'mui')">Melindungi keselamatan teman, ga ninggalin siapa pun</button>
+                <button class="quiz-option" onclick="answer(4, 'dora')">Membangun ikatan emosional yang dalam dengan partner</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="5">
+              <h2>Q6: Mana yang paling mewakili filosofi hidup kamu?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(5, 'nina')">"Keadilan melayani tujuan yang lebih besar, aku ga akan mundur."</button>
+                <button class="quiz-option" onclick="answer(5, 'jen')">"Aku terlahir untuk memimpin, ini adalah takdirku."</button>
+                <button class="quiz-option" onclick="answer(5, 'mui')">"Menjaga hal berharga dalam diam, itulah jalanku."</button>
+                <button class="quiz-option" onclick="answer(5, 'dora')">"Mengisi dunia dengan cinta dan rasa manis, itulah impianku."</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="6">
+              <h2>Q7: Weekend ideal kamu tuh ngapain?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(6, 'nina')">Coba olahraga ekstrem, nyari adrenalin yang bikin jantung copot</button>
+                <button class="quiz-option" onclick="answer(6, 'jen')">Baca dan belajar, nyemplung di lautan pengetahuan</button>
+                <button class="quiz-option" onclick="answer(6, 'mui')">Di rumah aja santai, nikmatin ketenangan sendirian</button>
+                <button class="quiz-option" onclick="answer(6, 'dora')">Ngumpul bareng temen, bagi-bagi makanan enak dan ketawa bareng</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="7">
+              <h2>Q8: Partner petualangan ideal kamu itu yang kayak gimana?</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(7, 'nina')">Kuat dan tangguh, bisa bertarung bahu-membahu di garis depan</button>
+                <button class="quiz-option" onclick="answer(7, 'jen')">Cerdas dan bijaksana, bisa kasih strategi jitu di momen kritis</button>
+                <button class="quiz-option" onclick="answer(7, 'mui')">Tenang dan bisa diandalkan, selalu hadir saat situasi genting</button>
+                <button class="quiz-option" onclick="answer(7, 'dora')">Hangat dan perhatian, kasih semangat dan kekuatan saat kamu lelah</button>
+              </div>
+            </div>
+
+            <div class="quiz-nav-btns">
+              <button class="btn btn-outline" id="btn-prev" style="display:none;" onclick="prevQuestion()">← Sebelumnya</button>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div id="quiz-result" class="quiz-result">
+            <img id="result-img" class="result-img" src="" alt="">
+            <h2 id="result-name"></h2>
+            <span id="result-role" class="result-role"></span>
+            <p id="result-desc"></p>
+            <div id="result-bars" style="max-width: 400px; margin: 16px auto;"></div>
+            <div class="result-stats" id="result-stats"></div>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:8px;"><em id="result-path"></em></p>
+            <div class="quiz-nav-btns">
+              <button class="btn btn-outline" onclick="resetQuiz()">Ulangi Kuis</button>
+              <a href="characters.html" class="btn btn-primary">Lihat Database Karakter</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Tentang Situs Ini</h4>
+        <p>Panduan Star Sailors adalah situs non-resmi yang menyediakan panduan game, database karakter, dan tips strategi lengkap untuk para pemain.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi Panduan</h4>
+        <a href="beginner.html">Panduan Pemula</a>
+        <a href="characters.html">Database Karakter</a>
+        <a href="battle.html">Strategi Battle</a>
+        <a href="equipment.html">Equipment & Upgrade</a>
+      </div>
+      <div class="footer-col">
+        <h4>Tools Berguna</h4>
+        <a href="quiz.html">Kuis Kecocokan Karakter</a>
+        <a href="battle.html#team">Rekomendasi Tim</a>
+        <a href="equipment.html#upgrade">Jalur Upgrade</a>
+      </div>
+      <div class="footer-col">
+        <h4>Tautan Terkait</h4>
+        <a href="https://starsailors.com2us.com" target="_blank" rel="noopener">Situs Resmi</a>
+        <a href="https://m.ourplay.net/rank/detail/313368" target="_blank" rel="noopener">Download OurPlay</a>
+      </div>
+    </div>
+    <div class="friend-links">
+      <h4>Teman &amp; Mitra</h4>
+      <div class="links-row">
+        <a href="https://gamesergo.com" target="_blank" rel="noopener">GameSergo</a>
+        <a href="https://gamenamgo.com" target="_blank" rel="noopener">GameNamGo</a>
+        <a href="https://gamehpogo.com/" target="_blank" rel="noopener">GameHpogo</a>
+        <a href="https://gamehpego.com" target="_blank" rel="noopener">GameHpego</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Panduan Star Sailors · Situs buatan penggemar · Hak cipta game milik Com2uS Holdings</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    let scores = { nina: 0, jen: 0, dora: 0, mui: 0 };
+    let currentQ = 0;
+    const totalQ = 8;
+
+    const characters = {
+      nina: {
+        name: 'Nina Stingblade',
+        role: 'DPS · Dark Gunner',
+        img: 'https://aka.doubaocdn.com/s/FT6a1wbwty',
+        desc: 'Kamu cocok banget sama Nina Stingblade! Kamu tipe orang yang tegas dan action-oriented, percaya sama kekuatan buat ngomong. Di battle kamu cenderung agresif, ngejar burst damage maksimal, nge-eliminasi musuh dengan firepower yang overwhelming. Kamu cocok di jalur <strong>Striker</strong>, pakai equipment set yang fokus ke crit rate dan mobilitas tinggi.',
+        path: 'Rekomendasi Playstyle: Burst DPS | Class: Striker | Prioritas Stats: ATK > SPD > CRIT',
+        stats: { ATK: 'S', SPD: 'A', DEF: 'B' }
+      },
+      jen: {
+        name: 'Princess Jen',
+        role: 'Mage · Wind Caster',
+        img: 'https://aka.doubaocdn.com/s/UdwE1wbwty',
+        desc: 'Kamu cocok banget sama Princess Jen! Kamu punya aura berwibawa dan insting yang tajam, lebih suka menyelesaikan masalah pake otak daripada otot. Di battle kamu fokus ke elemental counter dan skill combo, jago di area attack dan battlefield control. Kamu cocok di jalur <strong>Mystic</strong>, ngejar kombinasi stats dan skill chain yang sempurna.',
+        path: 'Rekomendasi Playstyle: Elemental Control | Class: Mystic | Prioritas Stats: MAG > SPD > HP',
+        stats: { MAG: 'S', SUP: 'A', DEF: 'C' }
+      },
+      dora: {
+        name: 'Quarter Rest Dora',
+        role: 'Support · Light Healer',
+        img: 'https://aka.doubaocdn.com/s/RScZ1wbwty',
+        desc: 'Kamu cocok banget sama Quarter Rest Dora! Hatimu lembut dan penuh kebaikan, percaya sama kekuatan cinta dan ikatan. Di battle kamu adalah tulang punggung tim yang tak tergantikan -- heal dan buff kamu bikin teman-teman bisa ngeluarin kemampuan terbaiknya. Kamu cocok di jalur <strong>Mystic (Healer)</strong>, jadi mesin penyokong tim yang ga pernah berhenti.',
+        path: 'Rekomendasi Playstyle: Sustain Healer | Class: Mystic - Healer Spec | Prioritas Stats: HEAL > HP > MAG',
+        stats: { HEAL: 'S', MAG: 'A', SPD: 'A' }
+      },
+      mui: {
+        name: 'Mui',
+        role: 'Tank · Dark Guardian',
+        img: 'https://aka.doubaocdn.com/s/dgOm1wbwty',
+        desc: 'Kamu cocok banget sama Mui! Kamu tipe orang yang cool di luar tapi hangat di dalam -- ngungkapin kepedulian lewat tindakan, bukan kata-kata. Di battle kamu adalah benteng paling solid, dengan pertahanan kokoh yang ngasih ruang buat tim ngeluarin damage. Kamu cocok di jalur <strong>Guardian</strong>, jadi tameng tim yang ga bakal tumbang.',
+        path: 'Rekomendasi Playstyle: Iron Wall Defense | Class: Guardian | Prioritas Stats: DEF > HP > Counter',
+        stats: { DEF: 'S', HP: 'A', SPD: 'C' }
+      }
+    };
+
+    function startQuiz() {
+      document.getElementById('quiz-intro').classList.add('quiz-hidden');
+      document.getElementById('quiz-questions').classList.remove('quiz-hidden');
+      scores = { nina: 0, jen: 0, dora: 0, mui: 0 };
+      currentQ = 0;
+      buildProgress();
+      showQuestion(0);
+    }
+
+    function buildProgress() {
+      const container = document.getElementById('quiz-progress');
+      container.innerHTML = '';
+      for (let i = 0; i < totalQ; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'quiz-progress-dot';
+        dot.id = 'dot-' + i;
+        container.appendChild(dot);
+      }
+    }
+
+    function showQuestion(idx) {
+      document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
+      const q = document.querySelector('.quiz-question[data-q="' + idx + '"]');
+      if (q) q.classList.add('active');
+      document.getElementById('btn-prev').style.display = idx > 0 ? 'inline-flex' : 'none';
+      updateDots();
+    }
+
+    function answer(qIdx, charKey) {
+      scores[charKey] += 1;
+      if (currentQ < totalQ - 1) {
+        currentQ++;
+        showQuestion(currentQ);
+      } else {
+        showResult();
+      }
+      updateDots();
+    }
+
+    function prevQuestion() {
+      if (currentQ > 0) { currentQ--; showQuestion(currentQ); }
+    }
+
+    function updateDots() {
+      for (let i = 0; i < totalQ; i++) {
+        const dot = document.getElementById('dot-' + i);
+        if (!dot) continue;
+        dot.classList.remove('active', 'done');
+        if (i < currentQ) dot.classList.add('done');
+        else if (i === currentQ) dot.classList.add('active');
+      }
+      // Mark all done on result
+      if (currentQ >= totalQ - 1) {
+        for (let i = 0; i < totalQ; i++) {
+          const dot = document.getElementById('dot-' + i);
+          if (dot) { dot.classList.remove('active'); dot.classList.add('done'); }
+        }
+      }
+    }
+
+    function showResult() {
+      document.getElementById('quiz-questions').classList.add('quiz-hidden');
+      document.getElementById('quiz-progress').innerHTML = '';
+      const resultDiv = document.getElementById('quiz-result');
+      resultDiv.classList.add('show');
+
+      let maxKey = 'nina';
+      let maxScore = 0;
+      for (const [k, v] of Object.entries(scores)) {
+        if (v > maxScore) { maxScore = v; maxKey = k; }
+      }
+
+      const char = characters[maxKey];
+      document.getElementById('result-img').src = char.img;
+      document.getElementById('result-name').textContent = char.name;
+      document.getElementById('result-role').textContent = char.role;
+      document.getElementById('result-desc').innerHTML = char.desc;
+      document.getElementById('result-path').textContent = char.path;
+
+      // Stats
+      const statsDiv = document.getElementById('result-stats');
+      statsDiv.innerHTML = '';
+      for (const [k, v] of Object.entries(char.stats)) {
+        statsDiv.innerHTML += '<div class="result-stat"><div class="val">' + v + '</div><div class="lbl">' + k + '</div></div>';
+      }
+
+      // Score bars
+      const barsDiv = document.getElementById('result-bars');
+      barsDiv.innerHTML = '';
+      const labels = { nina: 'Nina', jen: 'Princess Jen', dora: 'Dora', mui: 'Mui' };
+      const classes = { nina: 'nina', jen: 'jen', dora: 'dora', mui: 'mui' };
+      const totalAnswers = totalQ;
+      for (const [k, v] of Object.entries(scores)) {
+        const pct = Math.round((v / totalAnswers) * 100);
+        barsDiv.innerHTML +=
+          '<div class="result-bar-wrap">' +
+          '<span class="result-bar-label">' + labels[k] + '</span>' +
+          '<div class="result-bar-track"><div class="result-bar-fill ' + classes[k] + '" style="width:' + pct + '%"></div></div>' +
+          '<span style="font-size:0.8rem;color:var(--text-muted);width:36px;">' + pct + '%</span>' +
+          '</div>';
+      }
+
+      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetQuiz() {
+      document.getElementById('quiz-result').classList.remove('show');
+      document.getElementById('quiz-intro').classList.remove('quiz-hidden');
+      scores = { nina: 0, jen: 0, dora: 0, mui: 0 };
+      currentQ = 0;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

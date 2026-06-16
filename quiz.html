@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>角色相性测试 - Star Sailors 星际水手攻略站</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .quiz-page { min-height: 60vh; display: flex; align-items: center; justify-content: center; }
+    .quiz-intro { text-align: center; max-width: 600px; margin: 0 auto; }
+    .quiz-intro p { color: var(--text-secondary); margin-bottom: 24px; font-size: 1.05rem; line-height: 1.7; }
+    .quiz-hidden { display: none !important; }
+    .quiz-question { display: none; }
+    .quiz-question.active { display: block; }
+    .quiz-result { display: none; }
+    .quiz-result.show { display: block; padding: 48px 32px; }
+    .result-bar-wrap { margin: 8px 0; display: flex; align-items: center; gap: 12px; }
+    .result-bar-label { width: 70px; text-align: right; font-size: 0.85rem; font-weight: 600; color: var(--text-primary); flex-shrink: 0; }
+    .result-bar-track { flex: 1; height: 10px; background: var(--bg-primary); border-radius: 5px; overflow: hidden; }
+    .result-bar-fill { height: 100%; border-radius: 5px; transition: width 1s ease; }
+    .result-bar-fill.nina { background: linear-gradient(90deg, #ec4899, #f472b6); }
+    .result-bar-fill.jen { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    .result-bar-fill.dora { background: linear-gradient(90deg, #10b981, #34d399); }
+    .result-bar-fill.mui { background: linear-gradient(90deg, #00d4d4, #22d3ee); }
+    .quiz-nav-btns { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">✦</span>
+        <span>星际水手攻略站</span>
+      </a>
+      <button class="nav-toggle" aria-label="菜单">☰</button>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+        <a href="quiz.html">角色相性测试</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="breadcrumb">
+      <a href="index.html">首页</a> / <span>角色相性测试</span>
+    </div>
+
+    <section class="hero-inner">
+      <div class="hero-content animate-in">
+        <span class="hero-badge">PERSONALITY QUIZ</span>
+        <h1>角色相性测试</h1>
+        <p>回答8个简单问题，发现与你灵魂契合的星际水手角色、战斗流派与职业路线</p>
+      </div>
+    </section>
+
+    <section class="section quiz-page">
+      <div class="section-inner">
+        <div class="quiz-container">
+          <!-- Intro -->
+          <div id="quiz-intro" class="quiz-intro animate-on-scroll">
+            <p>在星际水手的浩瀚宇宙中，每位船长都有属于自己的战斗风格与灵魂伙伴。通过以下测试，我们将分析你的性格偏好与战斗理念，为你匹配最适合的角色、流派与职业路线。</p>
+            <button class="btn btn-primary" onclick="startQuiz()">开始测试</button>
+          </div>
+
+          <!-- Quiz Questions -->
+          <div id="quiz-questions" class="quiz-hidden">
+            <div class="quiz-progress" id="quiz-progress"></div>
+
+            <div class="quiz-question" data-q="0">
+              <h2>Q1：在团队中，你更喜欢扮演什么角色？</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(0, 'nina')">冲锋陷阵，亲手击败敌人 — 输出核心</button>
+                <button class="quiz-option" onclick="answer(0, 'jen')">掌控全局，用智慧与策略取胜 — 魔法大师</button>
+                <button class="quiz-option" onclick="answer(0, 'mui')">守护队友，成为团队最坚实的壁垒 — 前排坦克</button>
+                <button class="quiz-option" onclick="answer(0, 'dora')">支援伙伴，让团队发挥出最大力量 — 辅助治疗</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="1">
+              <h2>Q2：面对强大的敌人，你的第一反应是？</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(1, 'nina')">直接冲上去，用最强攻击力解决它</button>
+                <button class="quiz-option" onclick="answer(1, 'jen')">分析弱点，用元素克制精准打击</button>
+                <button class="quiz-option" onclick="answer(1, 'mui')">挡在队友前面，先承受伤害再找机会</button>
+                <button class="quiz-option" onclick="answer(1, 'dora')">先给队友加好增益状态，再一起应对</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="2">
+              <h2>Q3：你最喜欢的战斗节奏是？</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(2, 'nina')">速战速决，高爆发一波带走</button>
+                <button class="quiz-option" onclick="answer(2, 'jen')">华丽连招，AOE范围清场</button>
+                <button class="quiz-option" onclick="answer(2, 'mui')">稳扎稳打，以守为攻慢慢消耗</button>
+                <button class="quiz-option" onclick="answer(2, 'dora')">持续治疗，让队伍永远不倒</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="3">
+              <h2>Q4：如果获得一件稀有装备，你会优先？</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(3, 'nina')">强化武器，最大化输出能力</button>
+                <button class="quiz-option" onclick="answer(3, 'jen')">研究属性搭配，追求完美词条组合</button>
+                <button class="quiz-option" onclick="answer(3, 'mui')">优先强化防具，提升生存能力</button>
+                <button class="quiz-option" onclick="answer(3, 'dora')">选择辅助饰品，增强团队效果</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="4">
+              <h2>Q5：在探险旅途中，你最看重什么？</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(4, 'nina')">击败强敌的成就感与荣耀</button>
+                <button class="quiz-option" onclick="answer(4, 'jen')">探索未知世界的神秘与奥妙</button>
+                <button class="quiz-option" onclick="answer(4, 'mui')">保护同伴的安全，不落下任何人</button>
+                <button class="quiz-option" onclick="answer(4, 'dora')">与伙伴建立深厚的情感羁绊</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="5">
+              <h2>Q6：以下哪句话最能代表你的人生态度？</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(5, 'nina')">"正义服务于更伟大的事业，我不会退缩。"</button>
+                <button class="quiz-option" onclick="answer(5, 'jen')">"我天生就是引领他人的人，这是我的使命。"</button>
+                <button class="quiz-option" onclick="answer(5, 'mui')">"在寂静中守护重要之物，这就是我的道路。"</button>
+                <button class="quiz-option" onclick="answer(5, 'dora')">"用爱与甜蜜填满这个世界，就是我的梦想。"</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="6">
+              <h2>Q7：周末你会选择怎样度过？</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(6, 'nina')">挑战极限运动，追求肾上腺素飙升的刺激</button>
+                <button class="quiz-option" onclick="answer(6, 'jen')">阅读与学习，沉浸在知识的海洋中</button>
+                <button class="quiz-option" onclick="answer(6, 'mui')">宅家放松，享受宁静的独处时光</button>
+                <button class="quiz-option" onclick="answer(6, 'dora')">约朋友聚会，分享美食与欢笑</button>
+              </div>
+            </div>
+
+            <div class="quiz-question" data-q="7">
+              <h2>Q8：你理想中的冒险伙伴是什么样的？</h2>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="answer(7, 'nina')">实力强大，能与你并肩作战冲锋陷阵</button>
+                <button class="quiz-option" onclick="answer(7, 'jen')">智慧过人，能在关键时刻出谋划策</button>
+                <button class="quiz-option" onclick="answer(7, 'mui')">可靠稳重，危难时刻总能挺身而出</button>
+                <button class="quiz-option" onclick="answer(7, 'dora')">温暖贴心，疲惫时给予你安慰与力量</button>
+              </div>
+            </div>
+
+            <div class="quiz-nav-btns">
+              <button class="btn btn-outline" id="btn-prev" style="display:none;" onclick="prevQuestion()">← 上一题</button>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div id="quiz-result" class="quiz-result">
+            <img id="result-img" class="result-img" src="" alt="">
+            <h2 id="result-name"></h2>
+            <span id="result-role" class="result-role"></span>
+            <p id="result-desc"></p>
+            <div id="result-bars" style="max-width: 400px; margin: 16px auto;"></div>
+            <div class="result-stats" id="result-stats"></div>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:8px;"><em id="result-path"></em></p>
+            <div class="quiz-nav-btns">
+              <button class="btn btn-outline" onclick="resetQuiz()">重新测试</button>
+              <a href="characters.html" class="btn btn-primary">查看角色图鉴</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>关于本站</h4>
+        <p>星际水手（Star Sailors）非官方中文攻略资料站，致力于为中文玩家提供全面、及时的游戏攻略、角色资料与策略指南。</p>
+      </div>
+      <div class="footer-col">
+        <h4>攻略导航</h4>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+      </div>
+      <div class="footer-col">
+        <h4>实用工具</h4>
+        <a href="quiz.html">角色相性测试</a>
+        <a href="battle.html#team">组队推荐</a>
+        <a href="equipment.html#upgrade">升级路线</a>
+      </div>
+      <div class="footer-col">
+        <h4>相关链接</h4>
+        <a href="https://starsailors.com2us.com" target="_blank" rel="noopener">官方网站</a>
+        <a href="https://m.ourplay.net/rank/detail/313368" target="_blank" rel="noopener">OurPlay下载</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Star Sailors 星际水手攻略站 · 游戏版权归 Com2uS Holdings 所有</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    let scores = { nina: 0, jen: 0, dora: 0, mui: 0 };
+    let currentQ = 0;
+    const totalQ = 8;
+
+    const characters = {
+      nina: {
+        name: 'Nina Stingblade',
+        role: '输出型 · 暗系枪手',
+        img: 'https://aka.doubaocdn.com/s/FT6a1wbwty',
+        desc: '你与 Nina Stingblade 灵魂契合！你是一个果敢坚毅的行动派，信奉以实力说话。在战斗中你倾向于主动出击、追求极致的爆发输出，用压倒性的火力终结对手。你适合选择<strong>突击者 (Striker)</strong>职业路线，搭配高暴击、高机动性的装备套装。',
+        path: '推荐流派：爆发输出流 | 推荐兵种：突击者 (Striker) | 核心属性：攻击 > 速度 > 暴击',
+        stats: { 攻击: 'S', 速度: 'A', 防御: 'B' }
+      },
+      jen: {
+        name: 'Princess Jen',
+        role: '魔法型 · 风系法师',
+        img: 'https://aka.doubaocdn.com/s/UdwE1wbwty',
+        desc: '你与 Princess Jen 灵魂契合！你拥有高贵的气质与敏锐的洞察力，喜欢用智谋而非蛮力解决问题。在战斗中你注重元素克制与技能组合，擅长范围攻击和战场控制。你适合选择<strong>秘术师 (Mystic)</strong>职业路线，追求完美的属性搭配与技能连招。',
+        path: '推荐流派：元素掌控流 | 推荐兵种：秘术师 (Mystic) | 核心属性：魔法 > 速度 > 生命',
+        stats: { 魔法: 'S', 支援: 'A', 防御: 'C' }
+      },
+      dora: {
+        name: 'Quarter Rest Dora',
+        role: '辅助型 · 光系治疗师',
+        img: 'https://aka.doubaocdn.com/s/RScZ1wbwty',
+        desc: '你与 Quarter Rest Dora 灵魂契合！你拥有一颗温柔善良的心，相信爱与羁绊的力量。在战斗中你是团队不可或缺的后盾，用治疗与增益让队友发挥出超常实力。你适合选择<strong>秘术师 (Mystic)</strong>职业路线中的治疗方向，成为团队永动机。',
+        path: '推荐流派：永续治愈流 | 推荐兵种：秘术师 - 治愈专精 (Mystic - Healer) | 核心属性：治疗 > 生命 > 魔法',
+        stats: { 治疗: 'S', 魔法: 'A', 速度: 'A' }
+      },
+      mui: {
+        name: 'Mui',
+        role: '坦克型 · 暗系守护者',
+        img: 'https://aka.doubaocdn.com/s/dgOm1wbwty',
+        desc: '你与 Mui 灵魂契合！你是那种外冷内热、用行动而非言语表达关怀的人。在战斗中你是团队最可靠的壁垒，用坚实的防御为队友创造输出空间。你适合选择<strong>守护者 (Guardian)</strong>职业路线，成为团队永不倒下的盾牌。',
+        path: '推荐流派：铁壁防御流 | 推荐兵种：守护者 (Guardian) | 核心属性：防御 > 生命 > 反击',
+        stats: { 防御: 'S', 生命: 'A', 速度: 'C' }
+      }
+    };
+
+    function startQuiz() {
+      document.getElementById('quiz-intro').classList.add('quiz-hidden');
+      document.getElementById('quiz-questions').classList.remove('quiz-hidden');
+      scores = { nina: 0, jen: 0, dora: 0, mui: 0 };
+      currentQ = 0;
+      buildProgress();
+      showQuestion(0);
+    }
+
+    function buildProgress() {
+      const container = document.getElementById('quiz-progress');
+      container.innerHTML = '';
+      for (let i = 0; i < totalQ; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'quiz-progress-dot';
+        dot.id = 'dot-' + i;
+        container.appendChild(dot);
+      }
+    }
+
+    function showQuestion(idx) {
+      document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
+      const q = document.querySelector('.quiz-question[data-q="' + idx + '"]');
+      if (q) q.classList.add('active');
+      document.getElementById('btn-prev').style.display = idx > 0 ? 'inline-flex' : 'none';
+      updateDots();
+    }
+
+    function answer(qIdx, charKey) {
+      scores[charKey] += 1;
+      if (currentQ < totalQ - 1) {
+        currentQ++;
+        showQuestion(currentQ);
+      } else {
+        showResult();
+      }
+      updateDots();
+    }
+
+    function prevQuestion() {
+      if (currentQ > 0) { currentQ--; showQuestion(currentQ); }
+    }
+
+    function updateDots() {
+      for (let i = 0; i < totalQ; i++) {
+        const dot = document.getElementById('dot-' + i);
+        if (!dot) continue;
+        dot.classList.remove('active', 'done');
+        if (i < currentQ) dot.classList.add('done');
+        else if (i === currentQ) dot.classList.add('active');
+      }
+      // Mark all done on result
+      if (currentQ >= totalQ - 1) {
+        for (let i = 0; i < totalQ; i++) {
+          const dot = document.getElementById('dot-' + i);
+          if (dot) { dot.classList.remove('active'); dot.classList.add('done'); }
+        }
+      }
+    }
+
+    function showResult() {
+      document.getElementById('quiz-questions').classList.add('quiz-hidden');
+      document.getElementById('quiz-progress').innerHTML = '';
+      const resultDiv = document.getElementById('quiz-result');
+      resultDiv.classList.add('show');
+
+      let maxKey = 'nina';
+      let maxScore = 0;
+      for (const [k, v] of Object.entries(scores)) {
+        if (v > maxScore) { maxScore = v; maxKey = k; }
+      }
+
+      const char = characters[maxKey];
+      document.getElementById('result-img').src = char.img;
+      document.getElementById('result-name').textContent = char.name;
+      document.getElementById('result-role').textContent = char.role;
+      document.getElementById('result-desc').innerHTML = char.desc;
+      document.getElementById('result-path').textContent = char.path;
+
+      // Stats
+      const statsDiv = document.getElementById('result-stats');
+      statsDiv.innerHTML = '';
+      for (const [k, v] of Object.entries(char.stats)) {
+        statsDiv.innerHTML += '<div class="result-stat"><div class="val">' + v + '</div><div class="lbl">' + k + '</div></div>';
+      }
+
+      // Score bars
+      const barsDiv = document.getElementById('result-bars');
+      barsDiv.innerHTML = '';
+      const labels = { nina: 'Nina', jen: 'Princess Jen', dora: 'Dora', mui: 'Mui' };
+      const classes = { nina: 'nina', jen: 'jen', dora: 'dora', mui: 'mui' };
+      const totalAnswers = totalQ;
+      for (const [k, v] of Object.entries(scores)) {
+        const pct = Math.round((v / totalAnswers) * 100);
+        barsDiv.innerHTML +=
+          '<div class="result-bar-wrap">' +
+          '<span class="result-bar-label">' + labels[k] + '</span>' +
+          '<div class="result-bar-track"><div class="result-bar-fill ' + classes[k] + '" style="width:' + pct + '%"></div></div>' +
+          '<span style="font-size:0.8rem;color:var(--text-muted);width:36px;">' + pct + '%</span>' +
+          '</div>';
+      }
+
+      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetQuiz() {
+      document.getElementById('quiz-result').classList.remove('show');
+      document.getElementById('quiz-intro').classList.remove('quiz-hidden');
+      scores = { nina: 0, jen: 0, dora: 0, mui: 0 };
+      currentQ = 0;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

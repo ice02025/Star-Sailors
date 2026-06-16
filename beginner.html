@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新手攻略 - Star Sailors 星际水手攻略站</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">✦</span>
+        <span>星际水手攻略站</span>
+      </a>
+      <button class="nav-toggle" aria-label="菜单">☰</button>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+        <a href="quiz.html">角色相性测试</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">首页</a> / <span>新手攻略</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero-inner">
+      <div class="hero-content animate-in">
+        <span class="hero-badge">BEGINNER GUIDE</span>
+        <h1>新手入门攻略</h1>
+        <p>从零开始，全面掌握星际水手的核心玩法，快速成长为独当一面的星际船长</p>
+      </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">STEP BY STEP</span>
+          <h2>初次启航指南</h2>
+          <p>跟随以下步骤，快速上手星际水手的基础操作</p>
+        </div>
+        <div class="step-list">
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>进入游戏与角色创建</h3>
+              <p>启动游戏后点击屏幕进入主界面。初次游玩时可以自定义角色外观形象，包括发型、发色、面部特征等。确认后即可正式踏入星际航程。</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>观看开场剧情</h3>
+              <p>角色创建完成后，游戏将播放一段开场剧情动画，介绍世界观与主角失忆的设定。如果想快速进入游戏，可点击右上角的 "Skip" 按钮跳过剧情。剧情结束后自动进入首场战斗。</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>选择战斗技能</h3>
+              <p>战斗前，点击角色头像旁的 "＋" 号来选择本回合要释放的技能。不同技能有不同的效果范围和消耗。部分高阶技能需要消耗SP点数才能施放，请合理规划资源。</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>执行战斗</h3>
+              <p>所有角色分配好技能后，点击下方的 "Battle" 按钮即可开始战斗。角色会根据指令自动执行攻击。注意观察屏幕上的 QTE 提示，抓住爆发机会可造成巨额伤害！</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h3>返回主界面</h3>
+              <p>战斗结束后回到主界面，这里可以查看角色等级、体力值、金币数量及当前活动信息。点击 "Battle" 继续主线任务，或挑战支线关卡获取更多奖励与经验。</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">6</div>
+            <div class="step-content">
+              <h3>伙伴升级与养成</h3>
+              <p>点击下方菜单的 "Upgrade" → "Partner" 界面，可以为伙伴进行升级强化。合理分配资源，重点培养核心角色，提升整体战力。</p>
+            </div>
+          </div>
+          <div class="step-item animate-on-scroll">
+            <div class="step-number">7</div>
+            <div class="step-content">
+              <h3>查看故事剧情</h3>
+              <p>点击 "Story" 按钮可查看主线剧情、日常任务剧情以及伙伴专属故事。深入了解角色背景与世界观，某些伙伴故事完成后还能解锁特殊奖励。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Game Modes -->
+    <section class="section section-dark">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">GAME MODES</span>
+          <h2>游戏模式详解</h2>
+          <p>了解不同的游戏模式，合理分配每日游戏时间</p>
+        </div>
+        <div class="cards-grid">
+          <div class="card animate-on-scroll">
+            <div class="card-icon cyan"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M4 4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15z"/></svg></div>
+            <h3>主线剧情 (Main Story)</h3>
+            <p>推进游戏的核心内容，跟随传奇罗盘探索漂浮大陆的秘密。目前第一章已完整开放，包含超过70个战斗关卡。完成主线可解锁新伙伴、新区域与新功能。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon purple"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg></div>
+            <h3>每日任务 (Daily Quests)</h3>
+            <p>每日刷新6条伙伴专属故事任务，完成后可获得大量经验、金币与养成材料。建议优先完成，是日常资源获取的主要途径之一。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon gold"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18"/><path d="M5 21V9l4-4h6l4 4v12"/><path d="M9 21v-6h6v6"/></svg></div>
+            <h3>地下城 (Dungeon)</h3>
+            <p>随机生成的地下城副本，怪物分布与宝藏位置每次都不相同。高风险高回报，是获取稀有装备与材料的重要来源。建议组队挑战更高难度。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon green"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M3 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><path d="M13 20v-2a4 4 0 014-4h.5"/></svg></div>
+            <h3>团队副本 (Raid)</h3>
+            <p>与其他玩家组队挑战高难度Boss的协作模式。需要合理的团队配置与默契配合，掉落的团队专属装备属性远超普通装备。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon pink"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.5 2.5L21 9l-3 3-10-10 6.5-6.5"/><path d="M9.5 9.5l-7 7 4 4 7-7"/></svg></div>
+            <h3>竞技场 (Arena)</h3>
+            <p>与其他玩家实时对战的PVP模式。根据对手阵容灵活调整战术，考验玩家对角色理解与队伍搭配的深度，排名越高奖励越丰厚。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon cyan"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12,2 15,8 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,8"/></svg></div>
+            <h3>活动关卡 (Event)</h3>
+            <p>限时开放的特殊活动关卡，通常伴随新角色或节日主题。完成活动可获取限定伙伴、皮肤、特殊道具等绝版奖励，建议优先参与。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="section" id="tips">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">PRO TIPS</span>
+          <h2>新手必知技巧</h2>
+          <p>资深船长总结的实用经验，帮你少走弯路</p>
+        </div>
+        <div class="animate-on-scroll">
+          <div class="tip-card success">
+            <h4>优先完成每日任务</h4>
+            <p>每日任务是新手期经验和材料的最稳定来源，建议每天登录后优先完成。6条每日故事线全部完成可获得可观的养成资源。</p>
+          </div>
+          <div class="tip-card info">
+            <h4>集中培养核心角色</h4>
+            <p>初期资源有限，不要平均分配给所有伙伴。选择2-3名核心角色重点培养，确保主线推进顺利。10位免费伙伴中优先培养评级高的角色。</p>
+          </div>
+          <div class="tip-card warning">
+            <h4>把握好QTE时机</h4>
+            <p>战斗中出现的QTE爆发机会是制胜关键。在提示出现时迅速点击屏幕，成功触发可造成额外伤害或特殊效果，在Boss战中尤其重要。</p>
+          </div>
+          <div class="tip-card success">
+            <h4>理解元素克制关系</h4>
+            <p>游戏中有火、水、风、光、暗五种元素属性，元素之间存在克制关系。组队时注意搭配不同属性的伙伴，针对敌人弱点进行克制攻击可获得伤害加成。</p>
+          </div>
+          <div class="tip-card info">
+            <h4>管理好体力资源</h4>
+            <p>体力（Stamina）是限制游戏进度的关键资源。建议将体力优先用于推进主线和每日任务，活动期间可适当购买体力补充。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-dark">
+      <div class="section-inner">
+        <div class="section-header animate-on-scroll">
+          <span class="section-badge">FAQ</span>
+          <h2>常见问题解答</h2>
+        </div>
+        <div class="cards-grid">
+          <div class="card animate-on-scroll">
+            <div class="card-icon cyan"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a3 3 0 015 2c0 3-3 3-3 3"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg></div>
+            <h3>游戏支持中文吗？</h3>
+            <p>目前游戏仅支持韩语和英语，暂无官方中文。不过界面操作较为直观，配合本攻略站可轻松上手。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon purple"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a3 3 0 015 2c0 3-3 3-3 3"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg></div>
+            <h3>如何免费获取伙伴？</h3>
+            <p>游戏提供10位可免费获取的伙伴，通过推进主线剧情、完成每日任务和参与活动即可解锁，无需付费。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon gold"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a3 3 0 015 2c0 3-3 3-3 3"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg></div>
+            <h3>游戏卡顿怎么办？</h3>
+            <p>可尝试降低画质设置、关闭后台应用、清理手机缓存。如使用模拟器，建议分配更多内存和CPU资源。</p>
+          </div>
+          <div class="card animate-on-scroll">
+            <div class="card-icon green"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a3 3 0 015 2c0 3-3 3-3 3"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg></div>
+            <h3>SP点数如何获取？</h3>
+            <p>SP点数在战斗中通过普通攻击和特定技能积累，部分伙伴技能也可为团队回复SP。合理管理SP是后期战斗的关键。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>关于本站</h4>
+        <p>星际水手（Star Sailors）非官方中文攻略资料站，致力于为中文玩家提供全面、及时的游戏攻略、角色资料与策略指南。</p>
+      </div>
+      <div class="footer-col">
+        <h4>攻略导航</h4>
+        <a href="beginner.html">新手攻略</a>
+        <a href="characters.html">角色图鉴</a>
+        <a href="battle.html">战斗策略</a>
+        <a href="equipment.html">装备养成</a>
+      </div>
+      <div class="footer-col">
+        <h4>实用工具</h4>
+        <a href="quiz.html">角色相性测试</a>
+        <a href="battle.html#team">组队推荐</a>
+        <a href="equipment.html#upgrade">升级路线</a>
+      </div>
+      <div class="footer-col">
+        <h4>相关链接</h4>
+        <a href="https://starsailors.com2us.com" target="_blank" rel="noopener">官方网站</a>
+        <a href="https://m.ourplay.net/rank/detail/313368" target="_blank" rel="noopener">OurPlay下载</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Star Sailors 星际水手攻略站 · 游戏版权归 Com2uS Holdings 所有</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
